@@ -6,6 +6,7 @@ from os import remove
 import os
 
 #define vars
+SHEET_START = 6
 DOMESTIC_START = "עסקאות בארץ"
 CASH_ENTRY = "משיכת מזומנים"
 IGNORE_ISRACARD_ENTRY = "סך חיוב בש\"ח:"
@@ -13,6 +14,14 @@ IGNORE_FRGN_ISRACARD_ENTRY = "TOTAL FOR DATE"
 CASH_ADVANCE_FEE = "CASH ADVANCE FEE"
 #dictionaries
 establishment_dic_array = [{},{},{},{},{},{},{},{},{},{},{},{}]
+
+def set_crawler_params(first_sheet,row):
+    if (row==SHEET_START):
+        if first_sheet.cell(4,0).value==DOMESTIC_START:
+            return 6,0,1,2
+        else:
+            return 7,0,2,5
+    return row,0,2,5
 
 def print_to_csv(output_file,year,month,key,value,new_line):
     key = key.replace(",","")
@@ -29,7 +38,7 @@ def print_to_csv(output_file,year,month,key,value,new_line):
         output_file.write("\n")
 
 #Create Expense and Relative Establishment and put in appropriate set
-def add_expense(date_made, estab_name, amount, frgn_expense):
+def add_expense(date_made, estab_name, amount):
     month = int(date_made[date_made.find('/')+1:date_made.find('/')+3])
     establishment_dic = establishment_dic_array[month-1]
     if estab_name in establishment_dic:
@@ -40,16 +49,13 @@ def add_expense(date_made, estab_name, amount, frgn_expense):
     expense_input = Expense(date_made, estab, amount)
     estab.add_expense(expense_input)
 
+
 #parse isracard xls in html format
-def parse_xls_html(path, row_input,date_col,estab_col,amount_col,frgn_expense):
+def parse_xls_html(path, row_input):
     book = xlrd.open_workbook(filename=path, encoding_override="cp1252")
     first_sheet = book.sheet_by_index(0)
-    row = row_input
     keep_parsing = True
-    if first_sheet.cell(4,0).value!=DOMESTIC_START:
-        row = 7
-        estab_col = 2
-        amount_col = 5
+    row,date_col,estab_col,amount_col = set_crawler_params(first_sheet,row_input)
     while keep_parsing:
         establishment = first_sheet.cell(row,estab_col).value
         if establishment==IGNORE_FRGN_ISRACARD_ENTRY:
@@ -65,7 +71,7 @@ def parse_xls_html(path, row_input,date_col,estab_col,amount_col,frgn_expense):
         else:
             amount = first_sheet.cell(row,amount_col).value
             date_made = first_sheet.cell(row,date_col).value
-        add_expense(date_made, establishment, amount, frgn_expense)
+        add_expense(date_made, establishment, amount)
         row +=1
     try:
         if (first_sheet.cell(row+1,estab_col).value == xlrd.empty_cell.value):
@@ -73,8 +79,6 @@ def parse_xls_html(path, row_input,date_col,estab_col,amount_col,frgn_expense):
     except:
         return -1
     return row+2
-
-
 
 def output_data():
     output_file = open("output.csv", 'w')
@@ -94,8 +98,8 @@ print "Processing..."
 for fn in sorted(os.listdir(folder_path)):
      if "Export" in fn and ".xls" in fn and fn[0]!='.':
          print fn
-         next_row = parse_xls_html(folder_path + fn,6,0,1,2,False)
+         next_row = parse_xls_html(folder_path + fn,SHEET_START)
          if next_row!=-1:
-             next_row = parse_xls_html(folder_path + fn,next_row,0,2,5,True)
+             next_row = parse_xls_html(folder_path + fn,next_row)
 output_data()
 print "Done!"
