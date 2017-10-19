@@ -10,7 +10,7 @@ SHEET_START = 6
 DOMESTIC_START = "עסקאות בארץ"
 CASH_ENTRY = "משיכת מזומנים"
 IGNORE_ISRACARD_ENTRY = "סך חיוב בש\"ח:"
-IGNORE_FRGN_ISRACARD_ENTRY = "TOTAL FOR DATE"
+LAST_FRGN_ISRACARD_ENTRY = "TOTAL FOR DATE"
 CASH_ADVANCE_FEE = "CASH ADVANCE FEE"
 #dictionaries
 establishment_dic_array = [{},{},{},{},{},{},{},{},{},{},{},{}]
@@ -58,7 +58,7 @@ def parse_xls_html(path, row_input):
     row,date_col,estab_col,amount_col = set_crawler_params(first_sheet,row_input)
     while keep_parsing:
         establishment = first_sheet.cell(row,estab_col).value
-        if establishment==IGNORE_FRGN_ISRACARD_ENTRY:
+        if establishment==LAST_FRGN_ISRACARD_ENTRY:
             return -1
         if establishment == IGNORE_ISRACARD_ENTRY:
             row += 1
