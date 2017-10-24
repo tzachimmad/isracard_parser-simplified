@@ -70,6 +70,9 @@ class Establishment(object):
     def get_year(self,):
         return self.year_made
 
+    def get_category(self,):
+        return self.category
+
 class Category(object):
     """Categories in Buisinesses csv
     """
