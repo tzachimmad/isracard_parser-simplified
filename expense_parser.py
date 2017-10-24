@@ -54,7 +54,6 @@ def parse_categories():
         category = row[0]
         for i in range(1,len(row)):
             categories_dic[str(row[i])] = category
-            print row[i]
     f.close()
 
 #Create Expense and Relative Establishment and put in appropriate set
@@ -115,13 +114,13 @@ def output_data():
 folder_path = sys.argv[1]
 if (folder_path[-1]!='/'):
     folder_path = folder_path+'/'
-##print "Processing..."
+print "Processing..."
 parse_categories()
 for fn in sorted(os.listdir(folder_path)):
      if "Export" in fn and ".xls" in fn and fn[0]!='.':
-         ##print fn
+         print fn
          next_row = parse_xls_html(folder_path + fn,SHEET_START)
          if next_row!=-1:
              next_row = parse_xls_html(folder_path + fn,next_row)
 output_data()
-##print "Done!"
+print "Done!"
