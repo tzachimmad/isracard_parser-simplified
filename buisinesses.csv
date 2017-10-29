@@ -1,80 +1,80 @@
 booz,25M שוק הכרמל
-booz,4 שף בעמ
-basic living,ACMETEC DIA
-special,AIG ביטוח
+special,4 שף בעמ
+booz,ACMETEC DIA
+basic living,AIG ביטוח
 special,AMAZON DE RETAIL AMA
-booz,AMAZON EU
-foreign_cash,AMERICA BURGERS
-booz,ATM004
+special,AMAZON EU
+booz,AMERICA BURGERS
+foreign_cash,ATM004
 booz,B FRESH דיזנגוף סנטר
-fashion,BAD BRADS BBQ ORION
-booz,BANANA REPUBLIC ON L
+booz,BAD BRADS BBQ ORION
+fashion,BANANA REPUBLIC ON L
 booz,BANGKOK SALA CAFE
 booz,Beer Garden
-food,Benz
+booz,Benz
 booz,BLACK ROCK BAR AND
 booz,BREIZH CAFE PAR
-food,BUSBOYS   POETS
-foreign_cash,CALIFORNIA PIZZA 227
-gas,CASH ADVANCE FEE
-foreign_cash,CHAMPION GAS   FOOD
-booz,CITIZENS BANK
-culture,CITY COFE
-foreign_cash,CITY OF DETROIT MUN
-fashion,COMMERCIAL BANK
-booz,CONVERSE  3765
+booz,BUSBOYS   POETS
+booz,CALIFORNIA PIZZA 227
+foreign_cash,CASH ADVANCE FEE
+special,CHAMPION GAS   FOOD
+cash,CITIZENS BANK
+booz,CITY COFE
+special,CITY OF DETROIT MUN
+cash,COMMERCIAL BANK
+fashion,CONVERSE  3765
 booz,CRAFT BREWW CITY
-health,CTC CAFE      113149
-health,CVS PHARMACY  01334
-booz,CVS PHARMACY  08044
-special,DAR DERRIERE
+booz,CTC CAFE      113149
+basic living,CVS PHARMACY  01334
+basic living,CVS PHARMACY  08044
+booz,DAR DERRIERE
 fashion,DECATHLON
-booz,DENIM
+fashion,DENIM
 booz,DIBELLA S  123
 booz,diego san
 fashion,DUMBARTON OAKS
-foreign_cash,EDDIE BAUER 763
-fashion,ETA
-basic living,FINISH LINE  0336
-booz,FREE MOBILE
+fashion,EDDIE BAUER 763
+cash,ETA
+fashion,FINISH LINE  0336
+special,FREE MOBILE
 booz,FRENCH 57
-basic living,FU SUSHI
-special,GETT
-booz,GOTOGATE
-special,HARDEE S 1501153   Q
+booz,FU SUSHI
+basic living,GETT
+special,GOTOGATE
+booz,HARDEE S 1501153   Q
 special,IATF
-basic living,INDO FUSION
-booz,JBLPRO
+booz,INDO FUSION
+special,JBLPRO
 fashion,LAURIOL PLAZA
-booz,LE BUS DIRECT
+special,LE BUS DIRECT
 booz,LEOPOLDS CAFE
 fashion,LEVIS OUTLET 233
-fashion,LOS TRES AMIGOS FARM
-basic living,LOVE S TRAVEL 000045
-booz,LUCKY BRAND  43354
-special,MACYS  TWELVE OAKS
+booz,LOS TRES AMIGOS FARM
+fashion,LOVE S TRAVEL 000045
+fashion,LUCKY BRAND  43354
+fashion,MACYS  TWELVE OAKS
 special,MERIWETHERS
-booz,MOBILE 012 פרטנר
+basic living,MOBILE 012 פרטנר
 booz,MOON מסעדה יפנית
-booz,MUSEE ORSAY
-basic living,NBA LEAGUE PASS
-special,NEW MANDARIN GARDEN
-special,NG BAR &  MEAT
-food,NO  VI CHOPHOUSE
+special,MUSEE ORSAY
+special,NBA LEAGUE PASS
+food,NEW MANDARIN GARDEN
+booz,NG BAR &  MEAT
+booz,NO  VI CHOPHOUSE
 special,PARKING IN PITTSBURG
 special,PAYPAL  BUY2USA
 special,PAYPAL  CHAINREACTI
-fashion,PAYPAL  DOMINOS
+food,PAYPAL  DOMINOS
 special,PAYPAL  GREAT2DEAL
-basic living,PAYPAL  HARMANAUDIO
-special,PAYPAL  KED3217
-special,PAYPAL  NIKE COM
-food,PAYPAL  USHOPS
-fashion,PAYPAL  WALMART COM
+special,PAYPAL  HARMANAUDIO
+fashion,PAYPAL  KED3217
+fashion,PAYPAL  NIKE COM
+fashion,PAYPAL  USHOPS
+special,PAYPAL  WALMART COM
 special,PAYPAL  XIANGHUIZHA
 foreign_cash,PAYPAL  ZHOUZEPENG
-booz,PEPPER  PAY
-booz,POLO RL AURBUN HILL2
+special,PEPPER  PAY
+fashion,POLO RL AURBUN HILL2
 booz,PORTRAITGALLER181493
 special,RATP
 booz,REST PING
@@ -82,9 +82,9 @@ gas,SARL MOUVI CANTAL
 gas,SAS GLOU ONE
 gas,SCULPTURE GRDN REST
 special,SQU SQ  CRAZY MOCHA
-special,SUNOCO 0320973100  Q
-special,SUNOCO 0374651801  Q
-special,SUNOCO 0443366003  Q
+gas,SUNOCO 0320973100  Q
+gas,SUNOCO 0374651801  Q
+gas,SUNOCO 0443366003  Q
 special,TRANSAVIA
 basic living,TST  BRUNOISE
 food,TST  COLONIA
@@ -93,42 +93,42 @@ food,USHOPS CHECKBOX LLC
 food,WAL MART  5893
 booz,ZOUP    NORTHWESTERN
 booz,אבא אבן
-booz,אבולעפיה  תל אביב
-booz,אבולעפיה תל אביב
+food,אבולעפיה  תל אביב
+food,אבולעפיה תל אביב
 booz,אגנס בר
-basic living,אהה לה רמפה בעמ
-basic living,אוגנדה תל אביב
-basic living,אוזריה
-food,אוסקר ווילד
-food,אופני סלאלום
-food,אופני עוז
-food,אופני תל אביב
+booz,אהה לה רמפה בעמ
+booz,אוגנדה תל אביב
+booz,אוזריה
+booz,אוסקר ווילד
+basic living,אופני סלאלום
+basic living,אופני עוז
+basic living,אופני תל אביב
 food,אטליז אבו חלוה בשר
 food,אטליז חינאוי
 food,אי אם פי אם
 food,אי אם פי אם אבן גביר
 food,אי אם פי אם יצחק שדה
-booz,אי.אם.פי.אם
+food,אי.אם.פי.אם
 food,אי.אם.פי.אם פלורנטין
-booz,אי.אם.פי.אם קינג גו
-special,אי.אם.פי.אם-אבן גביר
+food,אי.אם.פי.אם קינג גו
+food,אי.אם.פי.אם-אבן גביר
 booz,איזו ובבט
-booz,איטליז כרמלית
+food,איטליז כרמלית
 booz,אילקה
-booz,אינדינג
-food,אמסטרדם פריז
-food,אמפריאל בר
-special,אניטה גלידה בעמ
+special,אינדינג
+booz,אמסטרדם פריז
+booz,אמפריאל בר
+booz,אניטה גלידה בעמ
 booz,אניטה גלידה בעמ-יוג
-booz,אננגוי מרקט בעמ
-booz,אסיה מוניקה בעמ
+food,אננגוי מרקט בעמ
+food,אסיה מוניקה בעמ
 special,אפל pay-box
-special,ארומה נוקיה
-fashion,ארומה עבדת
+booz,ארומה נוקיה
+booz,ארומה עבדת
 booz,ארומה פארק רעננה
-booz,ב.א. גרף יעוץ וסחר ב
-booz,בארבי. נט - מ.ש. הפק
-booz,בילבונג בורד שופ
+special,ב.א. גרף יעוץ וסחר ב
+special,בארבי. נט - מ.ש. הפק
+fashion,בילבונג בורד שופ
 booz,בילי גין
 booz,בילי האוס בעמ
 booz,בינו רוטשילד
@@ -136,163 +136,163 @@ booz,ביסטרו דה פריס
 booz,בית קפה התחתית  בעמ
 booz,בית קפה קזינו סן רמו
 booz,בית רומנו
-special,בר יהודה המכבי 63
+booz,בר יהודה המכבי 63
 booz,בר מנזר בעמ
-special,בר תרבות אורבנית בע
+booz,בר תרבות אורבנית בע
 booz,בראסרי אבן גבירול
-booz,בריכת גורדון-מוסדות
-fashion,ברשבסקי
-booz,ג.י.ל לבובסקי בעמ
+special,בריכת גורדון-מוסדות
+booz,ברשבסקי
+special,ג.י.ל לבובסקי בעמ
 booz,גאזטה בר - יין בעמ
 booz,גאספר בר
-booz,גאפ קניון עזריאלי ת
+fashion,גאפ קניון עזריאלי ת
 booz,גדעון בן עזרא השכן
 booz,גוז ולוז
-booz,גוני משקאות
-booz,גיימס ריצרדסון-טרמ
-food,גירף מסעדות בעמ
+food,גוני משקאות
+special,גיימס ריצרדסון-טרמ
+booz,גירף מסעדות בעמ
 booz,גלידה כפיתולינה
 booz,גלידת נוה צדק
 booz,גלרי ביסטרו בעמ
 booz,גרגיר הזהב
 booz,דאבל אספרסו
-basic living,דבוש הארבעה
-food,דבוש תא
-food,דדה
+booz,דבוש הארבעה
+booz,דבוש תא
+booz,דדה
 booz,דה בנדיקט בעמ
-booz,דואר ישראל עמילות מכ
+special,דואר ישראל עמילות מכ
 booz,דולסה
-booz,דומינוס פיצה
-basic living,דון פרדו הרצליה
-basic living,דוסה
+food,דומינוס פיצה
+booz,דון פרדו הרצליה
+booz,דוסה
 booz,דיזינגוף 143
 booz,דליקסו
-special,דמי כרטיס הנחה
-special,דן חברה לתחבורה ציבו
+basic living,דמי כרטיס הנחה
+basic living,דן חברה לתחבורה ציבו
 booz,דר לק רעננה
-booz,דרגסטור אבן גבירול
-gas,דרור כלי עבודה
-food,האוזן השלישית לייב ב
+food,דרגסטור אבן גבירול
+special,דרור כלי עבודה
+special,האוזן השלישית לייב ב
 booz,הבסטה
-food,הגאולה
-food,הוד תדלוק ומסחר בעמ
+booz,הגאולה
+gas,הוד תדלוק ומסחר בעמ
 booz,הטאבון קינג גורג
 booz,הירו ראמן בר בי אהרו
 food,הלחם של מיכאלה
-booz,המוציא לחם
-basic living,המזג
-booz,המטבח האסייאתי הסעדה
-booz,המעדניה של לין ועדן
+food,המוציא לחם
+booz,המזג
+food,המטבח האסייאתי הסעדה
+food,המעדניה של לין ועדן
 booz,המקסיקני
-booz,הנחה דלק-הוט
+gas,הנחה דלק-הוט
 booz,הנסיך
 booz,הנסיך הקטן
-food,השופטים
-basic living,התיאלנדית בסמטת סיני
-basic living,ויקי כריסטינה
-food,זבולון בא לגן
+booz,השופטים
+booz,התיאלנדית בסמטת סיני
+booz,ויקי כריסטינה
+booz,זבולון בא לגן
 food,זומר בייקרי
-food,חברת חשמל מחוז דן  מ
-food,חברת פרטנר תקשורת בע
+basic living,חברת חשמל מחוז דן  מ
+basic living,חברת פרטנר תקשורת בע
 food,חומוס גבעתיים
-booz,חומוס כספי בן יהודה
+food,חומוס כספי בן יהודה
 food,חומוס מוחמד כרואן 17
-booz,חיים רפאל בעמ
-booz,חנות דגים פנצטר משה
+food,חיים רפאל בעמ
+food,חנות דגים פנצטר משה
 booz,טוני ואסתר
-booz,טיב טעם רשתות- פרישמ
+food,טיב טעם רשתות- פרישמ
 booz,טיפהמרה קוקטיילס
 booz,טפאו
 booz,טפאלה אלכוהוליית רחו
-basic living,יאנס
-basic living,יום טוב קפה
-special,יוקו סושי בר טעמים נ
-booz,יין בעיר תל אביב
-food,כלל ב. הוראות קבע
-booz,כלל ביטוח חובה מקוון
-booz,לב תא מנויים
+booz,יאנס
+booz,יום טוב קפה
+booz,יוקו סושי בר טעמים נ
+food,יין בעיר תל אביב
+basic living,כלל ב. הוראות קבע
+basic living,כלל ביטוח חובה מקוון
+special,לב תא מנויים
 booz,לה מורס
-basic living,לחמנינה
-fashion,לנדוור מרינה
-fashion,לנדוור קינג גורג
-basic living,מא פאו
+food,לחמנינה
+booz,לנדוור מרינה
+booz,לנדוור קינג גורג
+booz,מא פאו
 basic living,מגדל חיים/בריאות
-booz,מגה בעיר אבן גבירול
-special,מגה ספורט עזריאלי
-food,מי אביבים 2010
-food,מי אביבים חיוב תקופת
-food,מיטמרקט חצר אחורית
-booz,מילגם-דמי אגרה טאבה
-booz,מינימרקט סייד
-booz,מינימרקט פלורנטין
-booz,מכולת גבינות
-food,ממתקי אבו גוש
-food,ממתקי הכפר
-basic living,מסעדת האווזים
-basic living,מסעדת קיטון
-booz,מעדניית חיים רפאל
-special,מעדניית יום טוב
-booz,מצמן תל אביב בעמ
-food,מקור הניקוי
-cash,מרגוזה- margoza bar
-booz,מרחבים טל בעמ
+food,מגה בעיר אבן גבירול
+fashion,מגה ספורט עזריאלי
+basic living,מי אביבים 2010
+basic living,מי אביבים חיוב תקופת
+booz,מיטמרקט חצר אחורית
+special,מילגם-דמי אגרה טאבה
+food,מינימרקט סייד
+food,מינימרקט פלורנטין
+food,מכולת גבינות
+booz,ממתקי אבו גוש
+booz,ממתקי הכפר
+booz,מסעדת האווזים
+booz,מסעדת קיטון
+food,מעדניית חיים רפאל
+food,מעדניית יום טוב
+basic living,מצמן תל אביב בעמ
+basic living,מקור הניקוי
+booz,מרגוזה- margoza bar
+basic living,מרחבים טל בעמ
 booz,מריקה
-gas,משוושה
-gas,משיכת מזומנים
-gas,מתחם 22 בעמ
+booz,משוושה
+cash,משיכת מזומנים
+booz,מתחם 22 בעמ
 booz,סוזט
-basic living,סונול אביב
-food,סונול נס ציונה
-food,סונול ראשון מזרח
-food,סוסו
+gas,סונול אביב
+gas,סונול נס ציונה
+gas,סונול ראשון מזרח
+booz,סוסו
 food,סופר ברכה
 basic living,סופר חוף דרום
 basic living,סופר יודה אג 76
 basic living,סופר מרקט הברכה
 basic living,סופר פארם גורדון 73
-food,סופר פארם יפו 130
-booz,סופר פארם לונדון 39
-booz,סופר-פארם פלורנטין 1
-booz,סופרפארם ארלוזורוב 2
-booz,סטופמרקט השרון
+basic living,סופר פארם יפו 130
+basic living,סופר פארם לונדון 39
+basic living,סופר-פארם פלורנטין 1
+basic living,סופרפארם ארלוזורוב 2
+food,סטופמרקט השרון
 booz,סילביה באמפר
-food,סימטא
+booz,סימטא
 booz,סנטה קתרינה
-basic living,ספוטניק
-basic living,סרבסה
-special,עבדו הדייג
-food,עד העצם אקספרס
-food,עיריית תא - יפו חני
-booz,עיריית תל אביב-יפוא
+booz,ספוטניק
+booz,סרבסה
+booz,עבדו הדייג
+booz,עד העצם אקספרס
+basic living,עיריית תא - יפו חני
+basic living,עיריית תל אביב-יפוא
 food,על גדות הנהר אני מחכ
-booz,עלי קרוואן
+food,עלי קרוואן
 food,עלי קרוואן בעמ
-food,עלמורית בעמ
+booz,עלמורית בעמ
 booz,עמליה בשוק
-gas,פאדיס
-gas,פארוק בשוק
-gas,פוד קורט
-gas,פורט סעיד
+booz,פאדיס
+food,פארוק בשוק
+food,פוד קורט
+booz,פורט סעיד
 gas,פז YELLOW חופית -
 gas,פז YELLOW נאות אביב
-booz,פז YELLOW סלמה
-booz,פז YELLOW פלורנ -
-booz,פז YELLOW שואבה
-booz,פז חברת נפט בעמ אלו
-food,פימפינלה נחלת בנימין
+gas,פז YELLOW סלמה
+gas,פז YELLOW פלורנ -
+gas,פז YELLOW שואבה
+gas,פז חברת נפט בעמ אלו
+booz,פימפינלה נחלת בנימין
 booz,פינפינלה
-basic living,פיצה ברוקלין
+booz,פיצה ברוקלין
 booz,פיקוק בר בעמ
-booz,פירות וירקות בכפר
+food,פירות וירקות בכפר
 booz,פלורנטין 10
 basic living,פנגו- חניה סלולארית
 booz,פסטה בסטה תל אביב
 booz,פרזין
-food,ק. פון - פלאנט ראשון
-booz,קופח מאוחדת
+special,ק. פון - פלאנט ראשון
+basic living,קופח מאוחדת
 booz,קוקיצה
 booz,קורדרוי
-booz,קיוסק קקל
+food,קיוסק קקל
 booz,קפה אלקלעי בעמ
 booz,קפה בר הבימה
 booz,קפה הנרייטה
@@ -301,26 +301,26 @@ booz,קפה נמרוד
 booz,קפה נמרוד שרונה
 booz,קפה סוזאנה
 booz,קפטן קארי דיזינגוף
-food,רובינא בר
-basic living,רובן
-basic living,רוטשילד 12
-basic living,רוטשילד קופי ספוט
-booz,רולדין
-food,רכבת ההגנה תל אביב
-food,רכבת סבידור תל אביב
-food,רכבת סגולה - פתח תקו
+booz,רובינא בר
+booz,רובן
+booz,רוטשילד 12
+booz,רוטשילד קופי ספוט
+food,רולדין
+basic living,רכבת ההגנה תל אביב
+basic living,רכבת סבידור תל אביב
+basic living,רכבת סגולה - פתח תקו
 booz,רעמססRAMSSES/
-special,שופרסל אקספרס פלורנט
-booz,שוק פלורנטין
+food,שופרסל אקספרס פלורנט
+food,שוק פלורנטין
 food,שוק פלורנטין בעמ
 booz,שוקו לולו
-basic living,שילב בעמ-גן העיר
-food,שכונתי הרצליה ברים ב
-basic living,תבליני פרג מסחר ושוו
-basic living,תדר פיצה
+special,שילב בעמ-גן העיר
+booz,שכונתי הרצליה ברים ב
+food,תבליני פרג מסחר ושוו
+booz,תדר פיצה
 basic living,תחנת המכבים בעמ
-booz,תחנת לחם-סניף לונדון
-food,תל-אופן - אינטרנט
+food,תחנת לחם-סניף לונדון
+basic living,תל-אופן - אינטרנט
 basic living,תל-אופן - מסופי השכר
 basic living,תל-אופן ה. קבע
 booz,תמרה מיצים טבעיים
