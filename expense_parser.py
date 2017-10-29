@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import argparse
 from expense_class import *
 import xlrd
 from isracard_update import *
@@ -14,9 +15,11 @@ CASH_ENTRY = "משיכת מזומנים"
 IGNORE_ISRACARD_ENTRY = "סך חיוב בש\"ח:"
 LAST_FRGN_ISRACARD_ENTRY = "TOTAL FOR DATE"
 CASH_ADVANCE_FEE = "CASH ADVANCE FEE"
-#dictionaries
-establishment_dic_array = [{},{},{},{},{},{},{},{},{},{},{},{}]
-categories_dic = {}
+
+def program_parameters():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("isracard_csv_directory", help="folder with downloaded isracard csv files")
+    return parser
 
 def set_crawler_params(first_sheet,row):
     if (row==SHEET_START):
@@ -47,7 +50,7 @@ def print_to_csv(output_file,estab,new_line):
         output_file.write("\n")
 
 ##parse categories csv
-def parse_categories():
+def parse_categories(categories_dic):
     f = open(CATEGORIES_FN, 'rb')
     reader = csv.reader(f)
     for row in reader:
@@ -57,7 +60,7 @@ def parse_categories():
     f.close()
 
 #Create Expense and Relative Establishment and put in appropriate set
-def add_expense(date_made, estab_name, amount):
+def add_expense(date_made, estab_name, amount,establishment_dic_array,categories_dic):
     month = int(date_made[date_made.find('/')+1:date_made.find('/')+3])
     establishment_dic = establishment_dic_array[month-1]
     if estab_name in establishment_dic:
@@ -71,7 +74,7 @@ def add_expense(date_made, estab_name, amount):
 
 
 #parse isracard xls in html format
-def parse_xls_html(path, row_input):
+def parse_xls_html(path, row_input,establishment_dic_array,categories_dic):
     book = xlrd.open_workbook(filename=path, encoding_override="cp1252")
     first_sheet = book.sheet_by_index(0)
     keep_parsing = True
@@ -91,7 +94,7 @@ def parse_xls_html(path, row_input):
         else:
             amount = first_sheet.cell(row,amount_col).value
             date_made = first_sheet.cell(row,date_col).value
-        add_expense(date_made, set_name(establishment), amount)
+        add_expense(date_made, set_name(establishment), amount,establishment_dic_array,categories_dic)
         row +=1
     try:
         if (first_sheet.cell(row+1,estab_col).value == xlrd.empty_cell.value):
@@ -100,7 +103,7 @@ def parse_xls_html(path, row_input):
         return -1
     return row+2
 
-def output_data():
+def output_data(establishment_dic_array):
     output_file = open("output.csv", 'w')
     output_file.write("Year,Month,Category,Establishment,Amount\n")
     for month in range(0,12):
@@ -111,16 +114,26 @@ def output_data():
             print_to_csv(output_file, estab, True)
     output_file.close()
 
-folder_path = sys.argv[1]
-if (folder_path[-1]!='/'):
-    folder_path = folder_path+'/'
-print "Processing..."
-parse_categories()
-for fn in sorted(os.listdir(folder_path)):
-     if "Export" in fn and ".xls" in fn and fn[0]!='.':
-         print fn
-         next_row = parse_xls_html(folder_path + fn,SHEET_START)
-         if next_row!=-1:
-             next_row = parse_xls_html(folder_path + fn,next_row)
-output_data()
-print "Done!"
+def main():
+    parser = program_parameters()
+    params, unknown = parser.parse_known_args()
+    folder_path = params.isracard_csv_directory+'/'
+    establishment_dic_array = [{},{},{},{},{},{},{},{},{},{},{},{}]
+    categories_dic = {}
+    print "Processing..."
+    parse_categories(categories_dic)
+    for fn in sorted(os.listdir(folder_path)):
+         if "Export" in fn and ".xls" in fn and fn[0]!='.':
+             print fn
+             next_row = parse_xls_html(folder_path + fn,SHEET_START,establishment_dic_array,categories_dic)
+             if next_row!=-1:
+                 next_row = parse_xls_html(folder_path + fn,next_row,establishment_dic_array,categories_dic)
+    output_data(establishment_dic_array)
+    print "Done!"
+
+if __name__ == "__main__":
+    try:
+        main()
+    except:
+        print "Error occured"
+        sys.exit(1)
