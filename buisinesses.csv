@@ -18,7 +18,7 @@ booz,BUSBOYS   POETS
 booz,CALIFORNIA PIZZA 227
 foreign_cash,CASH ADVANCE FEE
 special,CHAMPION GAS   FOOD
-cash,CITIZENS BANK
+foreign_cash,CITIZENS BANK
 booz,CITY COFE
 special,CITY OF DETROIT MUN
 cash,COMMERCIAL BANK
@@ -34,7 +34,7 @@ booz,DIBELLA S  123
 booz,diego san
 fashion,DUMBARTON OAKS
 fashion,EDDIE BAUER 763
-cash,ETA
+foreign_cash,ETA
 fashion,FINISH LINE  0336
 special,FREE MOBILE
 booz,FRENCH 57
@@ -329,3 +329,15 @@ booz,דא דא ודא רוטשילד/בר
 booz,הודנא
 booz,טראק דה לוקס
 food,פז YELLOW אשכול
+booz,JAPANIKA-ארבעה
+food,אדון שיפון שרונה
+food,בוטיק סנטרל
+basic living,דב לן בעמ
+booz,המאפייה אלנבי
+fashion,זארה גינדי תא
+booz,כספי יהודה מכבי
+booz,סאלוף ובניו בעמ
+special,סינמטק תל אביב
+booz,קפה קאימאק
+basic living,רוזן ומינץ-תא ראשי
+food,שופרסל אקספרסב מרמור
