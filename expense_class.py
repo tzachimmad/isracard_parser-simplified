@@ -3,10 +3,11 @@ class Expense(object):
     """Expense entry taken from Isracard output xls
     """
 
-    def __init__(self, date_made, establishment, amount):
+    def __init__(self, date_made, establishment, amount, category):
         self.date_made = date_made
         self.establishment = establishment
         self.amount = amount
+        self.category = category
 
     def get_amount(self,):
         return self.amount
@@ -26,7 +27,7 @@ class Expense(object):
         return int(month_year[month_year.find('/')+1:])
 
     def get_category(self,):
-        return self.get_category
+        return self.category
 
 class Establishment(object):
     """Establishments in Isracard output xls
