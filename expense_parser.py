@@ -26,7 +26,7 @@ def set_crawler_params(first_sheet,row):
 		if first_sheet.cell(4,0).value==DOMESTIC_START:
 			return 6,0,1,2
 		else:
-			return 7,0,2,5
+			return 6,0,2,5
 	return row,0,2,5
 
 def set_name (input_name):
