@@ -156,9 +156,8 @@ def main():
 	print "Done!"
 
 if __name__ == "__main__":
-	main()
-	##try:
-	##	main()
-	##except:
-	##	print "Error occured"
-	##	sys.exit(1)
+	try:
+		main()
+	except:
+		print "Error occured"
+		sys.exit(1)
