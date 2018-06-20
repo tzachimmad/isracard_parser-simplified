@@ -5,6 +5,9 @@ import xlrd
 from bs4 import BeautifulSoup, SoupStrainer
 from os import remove
 import os
+import sys
+import csv
+reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #define vars
