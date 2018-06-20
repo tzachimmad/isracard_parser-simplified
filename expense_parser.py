@@ -2,7 +2,6 @@
 import argparse
 from expense_class import *
 import xlrd
-from isracard_update import *
 from bs4 import BeautifulSoup, SoupStrainer
 from os import remove
 import os
