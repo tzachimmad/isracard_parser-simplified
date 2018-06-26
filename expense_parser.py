@@ -84,6 +84,8 @@ def add_expense(date_made, estab_name, amount,expense_array,categories_dic, card
 
 #parse isracard xls in html format
 def parse_xls_html(path, row_input,expense_array,categories_dic):
+	if row_input== SHEET_START:
+		print path
 	book = xlrd.open_workbook(filename=path, encoding_override="cp1252")
 	first_sheet = book.sheet_by_index(0)
 	keep_parsing = True
@@ -114,6 +116,7 @@ def parse_xls_html(path, row_input,expense_array,categories_dic):
 
 #parse isracard xls in html format
 def parse_agud_xls_html(path, expense_array, categories_dic):
+	print path
 	htmlfile = open(path)
 	xls_soup = BeautifulSoup(htmlfile,"html.parser")
 	counter = 0
@@ -146,8 +149,8 @@ def main():
 	for fn in sorted(os.listdir(folder_path)):
 		expense_array = []
 		if ".xls" in fn and fn[0]!='.':
-			print fn
-			if "Export" not in fn:
+			next_row = -1
+			if "פירוט" in fn:
 				next_row = parse_agud_xls_html(folder_path + fn, expense_array, categories_dic)
 			elif "Export" in fn:
 				next_row = parse_xls_html(folder_path + fn,SHEET_START,expense_array,categories_dic)
