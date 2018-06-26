@@ -24,6 +24,7 @@ RELEVENT_EXPENSE = "חיוב הבא"
 ISRCRD = '9130'
 MYCARD = '0532'
 MARIA_CRD = '0540'
+BANK_AGUD = "AGUD"
 
 def program_parameters():
 	parser = argparse.ArgumentParser()
@@ -64,6 +65,8 @@ def print_to_csv(output_file,expense):
 	person = "Tzachi"
 	if MARIA_CRD == expense.get_card():
 		person = "Maria"
+	if BANK_AGUD == expense.get_card():
+		person = "Bank Agud Expense"
 	output_file.write(person)
 	output_file.write("\n")
 
@@ -83,7 +86,7 @@ def add_expense(date_made, estab_name, amount,expense_array,categories_dic, card
 	expense_array.append(expense_input)
 
 #parse isracard xls in html format
-def parse_xls_html(path, row_input,expense_array,categories_dic):
+def parse_isrcrd_xls(path, row_input,expense_array,categories_dic):
 	if row_input== SHEET_START:
 		print path
 	book = xlrd.open_workbook(filename=path, encoding_override="cp1252")
@@ -114,8 +117,8 @@ def parse_xls_html(path, row_input,expense_array,categories_dic):
 		return -1
 	return row+2
 
-#parse isracard xls in html format
-def parse_agud_xls_html(path, expense_array, categories_dic):
+#parse visa cal xls in html format
+def parse_cal_xls_html(path, expense_array, categories_dic):
 	print path
 	htmlfile = open(path)
 	xls_soup = BeautifulSoup(htmlfile,"html.parser")
@@ -137,6 +140,34 @@ def parse_agud_xls_html(path, expense_array, categories_dic):
 	htmlfile.close()
 	return -1
 
+#parse bank agud xls in html format
+def parse_agud_xls_html(path, expense_array, categories_dic):
+	print path
+	htmlfile = open(path)
+	xls_soup = BeautifulSoup(htmlfile,"html.parser")
+	counter = 0
+	for item in xls_soup.findAll("tr"):
+		if "header alternatingItem" in str(item):
+			if counter == 3:
+				break
+			counter += 1
+			continue
+		elif counter>0 and ("item" in str(item) or "Item" in str(item)):
+			if "ויזה" in str(item):
+				continue
+			blocks = str(item).split("</td><td>")
+			if len(blocks[2])==2:
+				continue
+			estab = blocks[1]
+			if '>' in estab:
+				estab = estab[estab.find('>')+1:]
+				estab = estab[:estab.find('<')]
+			date = blocks[0][len(blocks[0])-5:]
+			amnt = blocks[2].replace(',','')
+			add_expense(date, set_name(estab), amnt,expense_array,categories_dic, BANK_AGUD)
+	htmlfile.close()
+	return -1
+
 def main():
 	parser = program_parameters()
 	params, unknown = parser.parse_known_args()
@@ -149,13 +180,14 @@ def main():
 	for fn in sorted(os.listdir(folder_path)):
 		expense_array = []
 		if ".xls" in fn and fn[0]!='.':
-			next_row = -1
 			if "פירוט" in fn:
-				next_row = parse_agud_xls_html(folder_path + fn, expense_array, categories_dic)
+				parse_cal_xls_html(folder_path + fn, expense_array, categories_dic)
+			elif "החשבון" in fn:
+				parse_agud_xls_html(folder_path + fn, expense_array, categories_dic)
 			elif "Export" in fn:
-				next_row = parse_xls_html(folder_path + fn,SHEET_START,expense_array,categories_dic)
-			if next_row!=-1:
-				next_row = parse_xls_html(folder_path + fn,next_row,expense_array,categories_dic)
+				next_row = parse_isrcrd_xls(folder_path + fn,SHEET_START,expense_array,categories_dic)
+				if next_row!=-1:
+					next_row = parse_isrcrd_xls(folder_path + fn,next_row,expense_array,categories_dic)
 			for exp in expense_array:
 				print_to_csv(output_file, exp)
 	print "Done!"
