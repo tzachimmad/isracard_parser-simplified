@@ -23,8 +23,10 @@ ACNT_NUM = "157-13"
 RELEVENT_EXPENSE = "חיוב הבא"
 ISRCRD = '9130'
 MYCARD = '0532'
+LEUMI = "933-122"
 MARIA_CRD = '0540'
 BANK_AGUD = "AGUD"
+BANK_LEUMI = "BANK LEUMI"
 
 def program_parameters():
 	parser = argparse.ArgumentParser()
@@ -39,7 +41,7 @@ def set_crawler_params(first_sheet,row):
 			return 6,0,2,5
 	return row,0,2,5
 
-def bank_agud_set_estab(estab, asmacta):
+def bank_set_estab(estab, asmacta):
 	if "זיכוי" in estab or "העברה" in estab:
 		return "Interbank Transaction " + asmacta
 	if "כספומט" in estab:
@@ -49,7 +51,7 @@ def bank_agud_set_estab(estab, asmacta):
 	return "Unknown " + asmacta
 
 def set_name(input_name, date):
-	key = input_name
+	key = input_name.decode('utf-8')
 	key = key.replace(",","")
 	key = key.replace("\'","")
 	key = key.replace("\"","")
@@ -77,8 +79,8 @@ def print_to_csv(output_file,expense):
 		out_amnt = out_effective = 0
 	output_file.write(str(out_amnt))
 	output_file.write(",")
-	if ISRCRD != expense.get_card():
-		in_effctive = in_effective/2
+	if ISRCRD != expense.get_card() and BANK_LEUMI != expense.get_card():
+		in_effective = in_effective/2
 		out_effective = out_effective/2
 	output_file.write(str(out_effective))
 	output_file.write(",")
@@ -106,7 +108,10 @@ def parse_categories(categories_dic):
 
 #Create Expense and Relative Establishment and put in appropriate set
 def add_expense(date_made, estab_name, amount,expense_array,categories_dic, card):
-	expense_input = Expense(date_made, estab_name, amount, categories_dic.get(str(estab_name),"unlisted_category"), card)
+	cat = "unlisted_category"
+	if card == BANK_AGUD or card== BANK_LEUMI:
+		cat = card
+	expense_input = Expense(date_made, estab_name, amount, categories_dic.get(str(estab_name),cat), card)
 	expense_array.append(expense_input)
 
 #parse isracard xls in html format
@@ -165,15 +170,18 @@ def parse_cal_xls_html(path, expense_array, categories_dic):
 	return -1
 
 #parse bank agud xls in html format
-def parse_agud_xls_html(path, expense_array, categories_dic):
+def parse_bank_xls_html(path, expense_array, categories_dic):
 	print path
 	htmlfile = open(path)
 	xls_soup = BeautifulSoup(htmlfile,"html.parser")
 	counter = 0
 	arr = []
+	bnk = BANK_AGUD
 	for blob in xls_soup.findAll("tr"):
 		blob2 = str(blob).split("tr class=")
 		for item in blob2:
+			if "חשבון" in item and LEUMI in item:
+				bnk = BANK_LEUMI
 			if "printItem ExtendedActivity_ForPrint" in item:
 				line = item.split("td><td")
 				date = set_name(line[0][line[0].rfind('>'):], True)
@@ -185,7 +193,7 @@ def parse_agud_xls_html(path, expense_array, categories_dic):
 				date = date[strt:end]
 				if "</a>" in line[1]:
 						line[1] = line[1][:line[1].find("</a")]
-				estab = bank_agud_set_estab(line[1][line[1].rfind('>'):],line[2][line[2].rfind('>'):])
+				estab = set_name(line[1][line[1].rfind('>'):],False).decode('utf-8')[1:9]
 				amount = set_name(line[3][line[3].rfind('>'):], False)
 				if len(amount)<=2:
 					amount = set_name(line[4][line[4].rfind('>'):], False)
@@ -196,9 +204,9 @@ def parse_agud_xls_html(path, expense_array, categories_dic):
 					arr.append(line[2][line[2].rfind('>'):]+date)
 				else:
 					continue
-				if "ויזה" in line[1][line[1].rfind('>'):]:
+				if "ויזה" in line[1][line[1].rfind('>'):] or "ישראכרט" in line[1][line[1].rfind('>'):]:
 					continue
-				add_expense(date, set_name(estab, False), amnt,expense_array,categories_dic, BANK_AGUD)
+				add_expense(date, estab, amnt,expense_array,categories_dic, bnk)
 	htmlfile.close()
 	return -1
 
@@ -218,7 +226,7 @@ def main():
 			if "פירוט" in fn:
 				parse_cal_xls_html(folder_path + fn, expense_array, categories_dic)
 			elif "בחשבון" in fn:
-				parse_agud_xls_html(folder_path + fn, expense_array, categories_dic)
+				parse_bank_xls_html(folder_path + fn, expense_array, categories_dic)
 			elif "Export" in fn:
 				next_row = parse_isrcrd_xls(folder_path + fn,SHEET_START,expense_array,categories_dic)
 				if next_row!=-1:
