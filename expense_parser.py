@@ -39,11 +39,26 @@ def set_crawler_params(first_sheet,row):
 			return 6,0,2,5
 	return row,0,2,5
 
-def set_name (input_name):
+def bank_agud_set_estab(estab, asmacta):
+	if "זיכוי" in estab or "העברה" in estab:
+		return "Interbank Transaction " + asmacta
+	if "כספומט" in estab:
+		return "ATM " + asmacta
+	if "שיק" in estab:
+		return "Check " + asmacta
+	return "Unknown " + asmacta
+
+def set_name(input_name, date):
 	key = input_name
 	key = key.replace(",","")
 	key = key.replace("\'","")
 	key = key.replace("\"","")
+	if not date:
+		key = key.replace("/","")
+	key = key.replace(">","")
+	key = key.replace("<","")
+	key = key.replace("\t","")
+	key = key.replace("\n","")
 	return key
 
 def print_to_csv(output_file,expense):
@@ -55,18 +70,27 @@ def print_to_csv(output_file,expense):
 	output_file.write(",")
 	output_file.write(expense.get_establishment())
 	output_file.write(",")
-	output_file.write(str(expense.get_amount()))
+	out_amnt = out_effective = float(expense.get_amount())
+	in_amnt = in_effective = 0
+	if out_amnt<0:
+		in_amnt =  in_effective = -1*out_amnt
+		out_amnt = out_effective = 0
+	output_file.write(str(out_amnt))
 	output_file.write(",")
-	effective_amount = float(expense.get_amount())
 	if ISRCRD != expense.get_card():
-		effective_amount = effective_amount/2
-	output_file.write(str(effective_amount))
+		in_effctive = in_effective/2
+		out_effective = out_effective/2
+	output_file.write(str(out_effective))
+	output_file.write(",")
+	output_file.write(str(in_amnt))
+	output_file.write(",")
+	output_file.write(str(in_effective))
 	output_file.write(",")
 	person = "Tzachi"
 	if MARIA_CRD == expense.get_card():
 		person = "Maria"
 	if BANK_AGUD == expense.get_card():
-		person = "Bank Agud Expense"
+		person = "Bank Agud"
 	output_file.write(person)
 	output_file.write("\n")
 
@@ -108,7 +132,7 @@ def parse_isrcrd_xls(path, row_input,expense_array,categories_dic):
 		else:
 			amount = first_sheet.cell(row,amount_col).value
 			date_made = first_sheet.cell(row,date_col).value
-		add_expense(date_made, set_name(establishment), amount,expense_array,categories_dic, ISRCRD)
+		add_expense(date_made, set_name(establishment, False), amount,expense_array,categories_dic, ISRCRD)
 		row +=1
 	try:
 		if (first_sheet.cell(row+1,estab_col).value == xlrd.empty_cell.value):
@@ -136,7 +160,7 @@ def parse_cal_xls_html(path, expense_array, categories_dic):
 							if MARIA_CRD in blocks[i+3][blocks[i+3].find('<')-4:blocks[i+3].find('<')]:
 								card = MARIA_CRD
 							amount = blocks[i+4][:blocks[i+4].find('<')]
-							add_expense(date_made, set_name(establishment), amount,expense_array,categories_dic, card)
+							add_expense(date_made, set_name(establishment, False), amount,expense_array,categories_dic, card)
 	htmlfile.close()
 	return -1
 
@@ -146,25 +170,35 @@ def parse_agud_xls_html(path, expense_array, categories_dic):
 	htmlfile = open(path)
 	xls_soup = BeautifulSoup(htmlfile,"html.parser")
 	counter = 0
-	for item in xls_soup.findAll("tr"):
-		if "header alternatingItem" in str(item):
-			if counter == 3:
-				break
-			counter += 1
-			continue
-		elif counter>0 and ("item" in str(item) or "Item" in str(item)):
-			if "ויזה" in str(item):
-				continue
-			blocks = str(item).split("</td><td>")
-			if len(blocks[2])==2:
-				continue
-			estab = blocks[1]
-			if '>' in estab:
-				estab = estab[estab.find('>')+1:]
-				estab = estab[:estab.find('<')]
-			date = blocks[0][len(blocks[0])-5:]
-			amnt = blocks[2].replace(',','')
-			add_expense(date, set_name(estab), amnt,expense_array,categories_dic, BANK_AGUD)
+	arr = []
+	for blob in xls_soup.findAll("tr"):
+		blob2 = str(blob).split("tr class=")
+		for item in blob2:
+			if "printItem ExtendedActivity_ForPrint" in item:
+				line = item.split("td><td")
+				date = set_name(line[0][line[0].rfind('>'):], True)
+				strt = 0
+				end = 8
+				if not date[0].isdigit():
+					strt = 1 
+					end = 9
+				date = date[strt:end]
+				if "</a>" in line[1]:
+						line[1] = line[1][:line[1].find("</a")]
+				estab = bank_agud_set_estab(line[1][line[1].rfind('>'):],line[2][line[2].rfind('>'):])
+				amount = set_name(line[3][line[3].rfind('>'):], False)
+				if len(amount)<=2:
+					amount = set_name(line[4][line[4].rfind('>'):], False)
+					amnt = -1*float(amount)
+				else:
+					amnt = float(amount)
+				if line[2][line[2].rfind('>'):]+date not in arr:
+					arr.append(line[2][line[2].rfind('>'):]+date)
+				else:
+					continue
+				if "ויזה" in line[1][line[1].rfind('>'):]:
+					continue
+				add_expense(date, set_name(estab, False), amnt,expense_array,categories_dic, BANK_AGUD)
 	htmlfile.close()
 	return -1
 
@@ -175,14 +209,15 @@ def main():
 	categories_dic = {}
 	print "Processing..."
 	output_file = open("output.csv", 'w')
-	output_file.write("Year,Month,Category,Establishment,Amount, Effective Amount, Person\n")
+	output_file.write("Year,Month,Category,Establishment,Out Amount, Out Effective Amount,\
+	 In Amount, In Effective Amount, Person\n")
 	parse_categories(categories_dic)
 	for fn in sorted(os.listdir(folder_path)):
 		expense_array = []
 		if ".xls" in fn and fn[0]!='.':
 			if "פירוט" in fn:
 				parse_cal_xls_html(folder_path + fn, expense_array, categories_dic)
-			elif "החשבון" in fn:
+			elif "בחשבון" in fn:
 				parse_agud_xls_html(folder_path + fn, expense_array, categories_dic)
 			elif "Export" in fn:
 				next_row = parse_isrcrd_xls(folder_path + fn,SHEET_START,expense_array,categories_dic)
